@@ -32,8 +32,7 @@
       "npx eslint --fix"
     ],
     "*.+(js|jsx|json|yml|yaml|md)": [
-      "npx prettier --write",
-      "git add"
+      "npx prettier --write"
     ]
   },
   "eslintConfig": {
