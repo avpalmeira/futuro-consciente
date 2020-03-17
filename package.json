@@ -19,7 +19,7 @@
     "lint:fix": "npx eslint . --fix",
     "lint:report": "npx eslint -f json -o ./lint-report.json .",
     "lint:check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
-    "format": "npx prettier --write \"**/*.+(js|json|yml|yaml|md)\""
+    "format": "npx prettier --write \"**/*.+(js|jsx|json|yml|yaml|md)\""
   },
   "husky": {
     "hooks": {
@@ -30,7 +30,7 @@
     "*.+(js|jsx)": [
       "npx eslint --fix"
     ],
-    "*.+(js|jsx|json|md)": [
+    "*.+(js|jsx|json|yml|yaml|md)": [
       "npx prettier --write",
       "git add"
     ]
@@ -56,7 +56,6 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
-    "flow-bin": "^0.120.1",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
     "prettier": "^1.19.1"
