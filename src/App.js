@@ -1,14 +1,18 @@
 import React from 'react';
 import FormTabs from './components/FormTabs';
+import { Layout } from 'antd';
+import 'antd/dist/antd.css';
+
+const { Header } = Layout;
 
 function App() {
   return (
-    <div>
-      <header>
+    <Layout>
+      <Header style={{ color: 'white' }}>
         <p>APP&apos;s LOGO</p>
-      </header>
+      </Header>
       <FormTabs />
-    </div>
+    </Layout>
   );
 }
 
