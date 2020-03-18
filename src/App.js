@@ -1,19 +1,22 @@
-import React from 'react';
-import FormTabs from './components/FormTabs';
-import { Layout } from 'antd';
-import 'antd/dist/antd.css';
+import React from "react";
+import FutureForm from "./components/FutureForm";
+import { ThemeProvider, useTheme } from "@material-ui/core/styles";
+import { AppBar, Typography } from "@material-ui/core";
 
-const { Header } = Layout;
+const App = () => {
+  const theme = useTheme();
 
-function App() {
   return (
-    <Layout>
-      <Header style={{ color: 'white' }}>
-        <p>APP&apos;s LOGO</p>
-      </Header>
-      <FormTabs />
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <AppBar position="static">
+        <Typography variant="h5" style={{ textAlign: "center" }}>
+          APP&apos;s LOGO
+        </Typography>
+      </AppBar>
+
+      <FutureForm />
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
