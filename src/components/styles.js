@@ -3,7 +3,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    maxWidth: 700
+    maxWidth: 700,
+    padding: 50
   },
   title: {
     marginTop: 20,
@@ -26,6 +27,11 @@ const styles = {
   },
   appBar: {
     backgroundColor: "white"
+  },
+  tabsWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    padding: 30
   }
 };
 

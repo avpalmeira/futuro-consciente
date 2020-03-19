@@ -8,10 +8,6 @@ function Confirm(props) {
 
   return (
     <Container style={styles.container}>
-      <Typography variant="h4" style={styles.title}>
-        Confirmar
-      </Typography>
-
       <Typography variant="body1" gutterBottom>
         Suas informacoes: ... ... ...
       </Typography>

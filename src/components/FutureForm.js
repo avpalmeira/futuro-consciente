@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import { AppBar, Tabs, Tab, Box } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import About from "./About";
 import ContactInfo from "./ContactInfo";
 import FutureMessage from "./FutureMessage";
 import Confirm from "./Confirm";
+import styles from "./styles";
+import logo from "../assets/logo.png";
 
 export class FutureForm extends Component {
   constructor(props) {
@@ -46,12 +51,15 @@ export class FutureForm extends Component {
 
   render() {
     const { step, ...values } = this.state;
+    const { theme } = this.props;
+    let currentTab;
 
     switch (step) {
       case 1:
-        return <About next={this.nextStep} />;
+        currentTab = <About next={this.nextStep} />;
+        break;
       case 2:
-        return (
+        currentTab = (
           <ContactInfo
             values={values}
             handleChange={this.handleChange}
@@ -59,8 +67,9 @@ export class FutureForm extends Component {
             prev={this.prevStep}
           />
         );
+        break;
       case 3:
-        return (
+        currentTab = (
           <FutureMessage
             values={values}
             handleChange={this.handleChange}
@@ -68,14 +77,37 @@ export class FutureForm extends Component {
             prev={this.prevStep}
           />
         );
+        break;
       case 4:
-        return <Confirm values={values} prev={this.prevStep} />;
+        currentTab = <Confirm values={values} prev={this.prevStep} />;
+        break;
       default:
         this.setState({ step: 1 });
-
-        return <About next={this.nextStep} />;
+        currentTab = <About next={this.nextStep} />;
     }
+    return (
+      <ThemeProvider theme={theme}>
+        <AppBar style={styles.appBar} position="static">
+          <img alt="" src={logo} style={styles.logo} />
+        </AppBar>
+
+        <Box style={styles.tabsWrapper}>
+          <Tabs value={step - 1} aria-label="form steps tabs">
+            <Tab label="Sobre" />
+            <Tab label="Contato" />
+            <Tab label="Mensagem" />
+            <Tab label="Confirmacao" />
+          </Tabs>
+        </Box>
+
+        {currentTab}
+      </ThemeProvider>
+    );
   }
 }
+
+FutureForm.propTypes = {
+  theme: PropTypes.object
+};
 
 export default FutureForm;

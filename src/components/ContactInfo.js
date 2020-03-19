@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Container,
-  TextField,
-  Typography
-} from "@material-ui/core";
+import { Box, Button, Container, TextField } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styles from "./styles";
 
@@ -14,10 +8,6 @@ function ContactInfo(props) {
 
   return (
     <Container style={styles.container}>
-      <Typography variant="h4" style={styles.title}>
-        Informacoes de Contato
-      </Typography>
-
       <TextField
         placeholder="Digite seu nome"
         label="Seu nome"

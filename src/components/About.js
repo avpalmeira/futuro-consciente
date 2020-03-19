@@ -8,10 +8,6 @@ function About(props) {
 
   return (
     <Container style={styles.container}>
-      <Typography variant="h4" style={styles.title}>
-        Sobre
-      </Typography>
-
       <Typography variant="body1" gutterBottom>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
         blanditiis tenetur unde suscipit, quam beatae rerum inventore
