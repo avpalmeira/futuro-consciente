@@ -16,6 +16,16 @@ const styles = {
   },
   buttonConfirm: {
     backgroundColor: "#4caf50"
+  },
+  logo: {
+    maxWidth: 200,
+    height: "100%",
+    padding: 20,
+    marginRight: "auto",
+    marginLeft: "auto"
+  },
+  appBar: {
+    backgroundColor: "white"
   }
 };
 
