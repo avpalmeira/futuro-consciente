@@ -4,7 +4,10 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     maxWidth: 700,
-    padding: 50
+    paddingRight: 50,
+    paddingLeft: 50,
+    paddingBottom: 30,
+    paddingTop: 30
   },
   title: {
     marginTop: 20,
@@ -32,6 +35,12 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     padding: 30
+  },
+  b: {
+    fontWeight: 600
+  },
+  confirmText: {
+    paddingBottom: 30
   }
 };
 

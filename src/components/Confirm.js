@@ -5,12 +5,27 @@ import styles from "./styles";
 
 function Confirm(props) {
   const { prev } = props;
+  const { _name, _email, _deliveryDate, _message } = props.values;
 
   return (
     <Container style={styles.container}>
-      <Typography variant="body1" gutterBottom>
-        Suas informacoes: ... ... ...
-      </Typography>
+      <Box style={styles.confirmText}>
+        <Typography variant="body1" gutterBottom>
+          <span style={styles.b}>{_name}</span>, sua carta será enviada:
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          No dia: <span style={styles.b}>{_deliveryDate}</span>
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          Para o endereco de e-mail: <span style={styles.b}>{_email}</span>
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          Com a seguinte mensagem:
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          <span style={styles.b}>{_message}</span>
+        </Typography>
+      </Box>
 
       <Box>
         <Button
@@ -34,7 +49,8 @@ function Confirm(props) {
 }
 
 Confirm.propTypes = {
-  prev: PropTypes.func
+  prev: PropTypes.func,
+  values: PropTypes.object
 };
 
 export default Confirm;
