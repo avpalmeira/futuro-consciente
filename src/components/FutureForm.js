@@ -8,6 +8,7 @@ import FutureMessage from "./FutureMessage";
 import Confirm from "./Confirm";
 import styles from "./styles";
 import logo from "../assets/logo.png";
+import FormValidator from "../helpers/FormValidator";
 
 export class FutureForm extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export class FutureForm extends Component {
 
     this.state = {
       step: 1,
+      validation: new FormValidator([]).valid(),
 
       // form fields
       _name: "",
@@ -29,11 +31,20 @@ export class FutureForm extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  nextStep() {
+  // validator is a FormValidator object
+  nextStep(validator) {
     const { step } = this.state;
-    this.setState({
-      step: step + 1
-    });
+
+    // check validation of form and update validation state
+    const validation = validator.validate(this.state);
+    this.setState({ validation });
+
+    // only if inputs are valid go to next step
+    if (validation && validation.isValid) {
+      this.setState({
+        step: step + 1
+      });
+    }
   }
 
   prevStep() {
@@ -63,6 +74,7 @@ export class FutureForm extends Component {
           <ContactInfo
             values={values}
             handleChange={this.handleChange}
+            validation={this.state.validation}
             next={this.nextStep}
             prev={this.prevStep}
           />
@@ -73,6 +85,7 @@ export class FutureForm extends Component {
           <FutureMessage
             values={values}
             handleChange={this.handleChange}
+            validation={this.state.validation}
             next={this.nextStep}
             prev={this.prevStep}
           />

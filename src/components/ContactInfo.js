@@ -2,9 +2,37 @@ import React from "react";
 import { Box, Button, Container, TextField } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styles from "./styles";
+import FormValidator from "../helpers/FormValidator";
 
 function ContactInfo(props) {
-  const { next, prev, values, handleChange } = props;
+  const { next, prev, values, handleChange, validation } = props;
+
+  const validator = new FormValidator([
+    {
+      field: "_name",
+      method: "isEmpty",
+      validWhen: false,
+      message: "Nome é obrigatório"
+    },
+    {
+      field: "_email",
+      method: "isEmpty",
+      validWhen: false,
+      message: "Email é obrigatório"
+    },
+    {
+      field: "_email",
+      method: "isEmail",
+      validWhen: true,
+      message: "Este não é um email válido"
+    },
+    {
+      field: "_telephone",
+      method: "isEmpty",
+      validWhen: false,
+      message: "Telefone é obrigatório"
+    }
+  ]);
 
   return (
     <Container style={styles.container}>
@@ -16,6 +44,11 @@ function ContactInfo(props) {
         onChange={handleChange}
         defaultValue={values._name}
       />
+
+      {validation._name && validation._name.message ? (
+        <p style={styles.validationError}>{validation._name.message}</p>
+      ) : null}
+
       <br />
 
       <TextField
@@ -26,6 +59,11 @@ function ContactInfo(props) {
         onChange={handleChange}
         defaultValue={values._email}
       />
+
+      {validation._email && validation._email.message ? (
+        <p style={styles.validationError}>{validation._email.message}</p>
+      ) : null}
+
       <br />
 
       <TextField
@@ -36,6 +74,11 @@ function ContactInfo(props) {
         onChange={handleChange}
         defaultValue={values._telephone}
       />
+
+      {validation._telephone && validation._telephone.message ? (
+        <p style={styles.validationError}>{validation._telephone.message}</p>
+      ) : null}
+
       <br />
 
       <Box>
@@ -48,7 +91,11 @@ function ContactInfo(props) {
           Anterior
         </Button>
 
-        <Button color="primary" variant="contained" onClick={next}>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={e => next(validator, e)}
+        >
           Próximo
         </Button>
       </Box>
@@ -60,7 +107,8 @@ ContactInfo.propTypes = {
   next: PropTypes.func,
   prev: PropTypes.func,
   handleChange: PropTypes.func,
-  values: PropTypes.object
+  values: PropTypes.object,
+  validation: PropTypes.object
 };
 
 export default ContactInfo;

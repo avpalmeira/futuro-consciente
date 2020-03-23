@@ -41,6 +41,12 @@ const styles = {
   },
   confirmText: {
     paddingBottom: 30
+  },
+  validationError: {
+    marginTop: 6,
+    marginBottom: 6,
+    fontSize: 12,
+    color: "#f50057"
   }
 };
 

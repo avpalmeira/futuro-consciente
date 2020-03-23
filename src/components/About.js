@@ -2,9 +2,12 @@ import React from "react";
 import { Button, Container, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styles from "./styles";
+import FormValidator from "../helpers/FormValidator";
 
 function About(props) {
   const { next } = props;
+
+  const validator = new FormValidator([]);
 
   return (
     <Container style={styles.container}>
@@ -19,7 +22,7 @@ function About(props) {
         color="primary"
         variant="contained"
         style={styles.button}
-        onClick={next}
+        onClick={e => next(validator, e)}
       >
         Próximo
       </Button>
