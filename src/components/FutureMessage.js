@@ -81,7 +81,7 @@ function FutureMessage(props) {
 
       <br />
 
-      {values._isAfterPandemic ? (
+      {!values._isAfterPandemic ? (
         <Grid container spacing={2} style={{ marginBottom: 20 }}>
           <Grid
             item
