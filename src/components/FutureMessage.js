@@ -26,16 +26,16 @@ function FutureMessage(props) {
     <Container style={styles.container}>
       <TextField
         placeholder="Escreva sua mensagem"
-        label="Mensagem do Futuro"
+        label="Mensagem para voce do Futuro"
         name="_message"
         onChange={handleChange}
         multiline
-        rows="4"
+        rows="3"
         variant="outlined"
         defaultValue={values._message}
       />
 
-      {validation._message && validation._message.message ? (
+      {validation._message && validation._message.isInvalid ? (
         <p style={styles.validationError}>{validation._message.message}</p>
       ) : null}
 
@@ -50,7 +50,7 @@ function FutureMessage(props) {
         defaultValue={values._deliveryDate}
       />
 
-      {validation._deliveryDate && validation._deliveryDate.message ? (
+      {validation._deliveryDate && validation._deliveryDate.isInvalid ? (
         <p style={styles.validationError}>{validation._deliveryDate.message}</p>
       ) : null}
 

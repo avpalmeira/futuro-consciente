@@ -40,12 +40,17 @@ function Confirm(props) {
           color="primary"
           variant="contained"
           style={styles.buttonConfirm}
+          onClick={handleConfirm}
         >
           Confirmar
         </Button>
       </Box>
     </Container>
   );
+}
+
+function handleConfirm() {
+  alert("Your form was submitted!");
 }
 
 Confirm.propTypes = {

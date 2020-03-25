@@ -45,7 +45,7 @@ function ContactInfo(props) {
         defaultValue={values._name}
       />
 
-      {validation._name && validation._name.message ? (
+      {validation._name && validation._name.isInvalid ? (
         <p style={styles.validationError}>{validation._name.message}</p>
       ) : null}
 
@@ -60,7 +60,7 @@ function ContactInfo(props) {
         defaultValue={values._email}
       />
 
-      {validation._email && validation._email.message ? (
+      {validation._email && validation._email.isInvalid ? (
         <p style={styles.validationError}>{validation._email.message}</p>
       ) : null}
 
@@ -75,7 +75,7 @@ function ContactInfo(props) {
         defaultValue={values._telephone}
       />
 
-      {validation._telephone && validation._telephone.message ? (
+      {validation._telephone && validation._telephone.isInvalid ? (
         <p style={styles.validationError}>{validation._telephone.message}</p>
       ) : null}
 
