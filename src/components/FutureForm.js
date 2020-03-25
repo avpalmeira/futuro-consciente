@@ -15,7 +15,7 @@ export class FutureForm extends Component {
     super(props);
 
     this.state = {
-      step: 3,
+      step: 1,
       validation: new FormValidator([]).valid(),
 
       // form fields
@@ -23,7 +23,7 @@ export class FutureForm extends Component {
       _email: "",
       _telephone: "",
       _message: "",
-      _deliveryDate: "",
+      _deliveryDate: new Date(),
       _isAfterPandemic: true
     };
 

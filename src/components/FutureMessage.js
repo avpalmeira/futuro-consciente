@@ -8,6 +8,11 @@ import {
   Typography,
   Switch
 } from "@material-ui/core";
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider
+} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import FormValidator from "../helpers/FormValidator";
@@ -71,7 +76,7 @@ function FutureMessage(props) {
             color="primary"
             name="_isAfterPandemic"
             onChange={handleChange}
-            inputProps={{ "aria-label": "primary checkbox" }}
+            inputProps={{ "aria-label": "check option to send after pandemic" }}
           />
           <Typography style={{ marginLeft: 10 }}>
             {values._isAfterPandemic ? "Sim" : null}
@@ -92,13 +97,20 @@ function FutureMessage(props) {
             <Typography>Deseja enviar entao na seguinte data:</Typography>
           </Grid>
           <Grid item sm={6} xs={3}>
-            <TextField
-              placeholder="Insira a data de envio"
-              name="_deliveryDate"
-              style={{ marginLeft: 10 }}
-              onChange={handleChange}
-              defaultValue={values._deliveryDate}
-            />
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                variant="inline"
+                name="_deliveryDate"
+                format="dd/MM/yyyy"
+                label="Insira a data de envio"
+                style={{ marginLeft: 10 }}
+                value={values._deliveryDate}
+                onChange={handleChange}
+                KeyboardButtonProps={{
+                  "aria-label": "change date"
+                }}
+              />
+            </MuiPickersUtilsProvider>
             {validation._deliveryDate && validation._deliveryDate.isInvalid ? (
               <p style={styles.validationError}>
                 {validation._deliveryDate.message}
