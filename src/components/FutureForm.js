@@ -23,7 +23,8 @@ export class FutureForm extends Component {
       _email: "",
       _telephone: "",
       _message: "",
-      _deliveryDate: ""
+      _deliveryDate: "",
+      _isAfterPandemic: true
     };
 
     this.nextStep = this.nextStep.bind(this);
@@ -55,7 +56,11 @@ export class FutureForm extends Component {
   }
 
   handleChange(e) {
-    const { name: fieldName, value } = e.target;
+    let { name: fieldName, value, checked } = e.target;
+
+    if (fieldName === "_isAfterPandemic") {
+      value = checked;
+    }
 
     this.setState({ [fieldName]: value });
   }

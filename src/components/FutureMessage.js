@@ -67,39 +67,45 @@ function FutureMessage(props) {
           style={{ display: "flex", alignItems: "center" }}
         >
           <Switch
-            checked={true}
+            checked={values._isAfterPandemic}
             color="primary"
-            name="checkedButton"
+            name="_isAfterPandemic"
+            onChange={handleChange}
             inputProps={{ "aria-label": "primary checkbox" }}
           />
-          <Typography style={{ marginLeft: 10 }}>Sim</Typography>
+          <Typography style={{ marginLeft: 10 }}>
+            {values._isAfterPandemic ? "Sim" : null}
+          </Typography>
         </Grid>
       </Grid>
 
       <br />
 
-      <Grid container spacing={2} style={{ marginBottom: 20 }}>
-        <Grid
-          item
-          sm={6}
-          xs={9}
-          style={{ display: "flex", alignItems: "center" }}
-        >
-          <Typography>Ou deseja enviar na seguinte data:</Typography>
+      {values._isAfterPandemic ? (
+        <Grid container spacing={2} style={{ marginBottom: 20 }}>
+          <Grid
+            item
+            sm={6}
+            xs={9}
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <Typography>Deseja enviar entao na seguinte data:</Typography>
+          </Grid>
+          <Grid item sm={6} xs={3}>
+            <TextField
+              placeholder="Insira a data de envio"
+              name="_deliveryDate"
+              style={{ marginLeft: 10 }}
+              onChange={handleChange}
+              defaultValue={values._deliveryDate}
+            />
+            {validation._deliveryDate && validation._deliveryDate.isInvalid ? (
+              <p style={styles.validationError}>
+                {validation._deliveryDate.message}
+              </p>
+            ) : null}
+          </Grid>
         </Grid>
-        <Grid item sm={6} xs={3}>
-          <TextField
-            placeholder="Insira a data de envio"
-            name="_deliveryDate"
-            style={{ marginLeft: 10 }}
-            onChange={handleChange}
-            defaultValue={values._deliveryDate}
-          />
-        </Grid>
-      </Grid>
-
-      {validation._deliveryDate && validation._deliveryDate.isInvalid ? (
-        <p style={styles.validationError}>{validation._deliveryDate.message}</p>
       ) : null}
 
       <br />
