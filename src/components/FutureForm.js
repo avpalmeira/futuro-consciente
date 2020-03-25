@@ -15,7 +15,7 @@ export class FutureForm extends Component {
     super(props);
 
     this.state = {
-      step: 1,
+      step: 3,
       validation: new FormValidator([]).valid(),
 
       // form fields

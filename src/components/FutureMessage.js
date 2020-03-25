@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Button, Container, TextField } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Container,
+  TextField,
+  Grid,
+  Typography,
+  Switch
+} from "@material-ui/core";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import FormValidator from "../helpers/FormValidator";
@@ -41,14 +49,54 @@ function FutureMessage(props) {
 
       <br />
 
-      <TextField
-        placeholder="Digite a data que deseja enviar a mensagem"
-        label="Enviar na data"
-        name="_deliveryDate"
-        margin="normal"
-        onChange={handleChange}
-        defaultValue={values._deliveryDate}
-      />
+      <Grid container spacing={2} style={{ marginTop: 20, marginBottom: 20 }}>
+        <Grid
+          item
+          sm={6}
+          xs={9}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <Typography>
+            Deseja que a mensagem seja enviada após o surto do COVID-19?
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          sm={6}
+          xs={3}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <Switch
+            checked={true}
+            color="primary"
+            name="checkedButton"
+            inputProps={{ "aria-label": "primary checkbox" }}
+          />
+          <Typography style={{ marginLeft: 10 }}>Sim</Typography>
+        </Grid>
+      </Grid>
+
+      <br />
+
+      <Grid container spacing={2} style={{ marginBottom: 20 }}>
+        <Grid
+          item
+          sm={6}
+          xs={9}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <Typography>Ou deseja enviar na seguinte data:</Typography>
+        </Grid>
+        <Grid item sm={6} xs={3}>
+          <TextField
+            placeholder="Insira a data de envio"
+            name="_deliveryDate"
+            style={{ marginLeft: 10 }}
+            onChange={handleChange}
+            defaultValue={values._deliveryDate}
+          />
+        </Grid>
+      </Grid>
 
       {validation._deliveryDate && validation._deliveryDate.isInvalid ? (
         <p style={styles.validationError}>{validation._deliveryDate.message}</p>
