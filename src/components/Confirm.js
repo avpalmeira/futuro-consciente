@@ -14,7 +14,7 @@ function Confirm(props) {
           <span style={styles.b}>{_name}</span>, sua carta será enviada:
         </Typography>
         <Typography variant="body1" gutterBottom>
-          No dia: <span style={styles.b}>{_deliveryDate}</span>
+          No dia: <span style={styles.b}>{_deliveryDate.toString()}</span>
         </Typography>
         <Typography variant="body1" gutterBottom>
           Para o endereco de e-mail: <span style={styles.b}>{_email}</span>

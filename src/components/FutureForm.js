@@ -24,7 +24,7 @@ export class FutureForm extends Component {
       _telephone: "",
       _message: "",
       _deliveryDate: new Date(),
-      _isAfterPandemic: true
+      _isAfterPandemic: false
     };
 
     this.nextStep = this.nextStep.bind(this);
@@ -55,14 +55,21 @@ export class FutureForm extends Component {
     });
   }
 
-  handleChange(e) {
-    let { name: fieldName, value, checked } = e.target;
-
-    if (fieldName === "_isAfterPandemic") {
-      value = checked;
+  handleChange(date, e) {
+    if (date) {
+      this.setState({ _deliveryDate: date });
+      return;
     }
 
-    this.setState({ [fieldName]: value });
+    if (e) {
+      let { name: fieldName, value, checked } = e.target;
+
+      if (fieldName === "_isAfterPandemic") {
+        value = checked;
+      }
+
+      this.setState({ [fieldName]: value });
+    }
   }
 
   render() {

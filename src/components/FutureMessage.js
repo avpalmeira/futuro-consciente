@@ -41,7 +41,7 @@ function FutureMessage(props) {
         placeholder="Escreva sua mensagem"
         label="Mensagem para voce do Futuro"
         name="_message"
-        onChange={handleChange}
+        onChange={e => handleChange(null, e)}
         multiline
         rows="3"
         variant="outlined"
@@ -75,7 +75,7 @@ function FutureMessage(props) {
             checked={values._isAfterPandemic}
             color="primary"
             name="_isAfterPandemic"
-            onChange={handleChange}
+            onChange={e => handleChange(null, e)}
             inputProps={{ "aria-label": "check option to send after pandemic" }}
           />
           <Typography style={{ marginLeft: 10 }}>
@@ -99,6 +99,9 @@ function FutureMessage(props) {
           <Grid item sm={6} xs={3}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
+                disableToolbar
+                autoOk={true}
+                disablePast={true}
                 variant="inline"
                 name="_deliveryDate"
                 format="dd/MM/yyyy"

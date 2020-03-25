@@ -41,7 +41,7 @@ function ContactInfo(props) {
         label="Seu nome"
         name="_name"
         margin="normal"
-        onChange={handleChange}
+        onChange={e => handleChange(null, e)}
         defaultValue={values._name}
       />
 
@@ -56,7 +56,7 @@ function ContactInfo(props) {
         label="Seu email"
         name="_email"
         margin="normal"
-        onChange={handleChange}
+        onChange={e => handleChange(null, e)}
         defaultValue={values._email}
       />
 
@@ -71,7 +71,7 @@ function ContactInfo(props) {
         label="Seu telefone"
         name="_telephone"
         margin="normal"
-        onChange={handleChange}
+        onChange={e => handleChange(null, e)}
         defaultValue={values._telephone}
       />
 
