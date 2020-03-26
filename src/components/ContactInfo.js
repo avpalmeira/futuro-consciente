@@ -3,6 +3,7 @@ import { Box, Button, Container, TextField } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styles from "./styles";
 import FormValidator from "../helpers/FormValidator";
+import MaskedInput from "react-text-mask";
 
 function ContactInfo(props) {
   const { next, prev, values, handleChange, validation } = props;
@@ -67,12 +68,13 @@ function ContactInfo(props) {
       <br />
 
       <TextField
-        placeholder="Digite seu telefone"
         label="Seu telefone"
+        placeholder="Digite seu telefone"
         name="_telephone"
         margin="normal"
+        value={values._telephone}
         onChange={e => handleChange(null, e)}
-        defaultValue={values._telephone}
+        InputProps={{ inputComponent: TelephoneMaskedInput }}
       />
 
       {validation._telephone && validation._telephone.isInvalid ? (
@@ -102,6 +104,75 @@ function ContactInfo(props) {
     </Container>
   );
 }
+
+function TelephoneMaskedInput(props) {
+  const { inputRef, name, value, onChange, placeholder, ...other } = props;
+
+  const telephoneMask = rawInput => {
+    const stringSize = rawInput.length;
+
+    if (stringSize <= 14) {
+      return [
+        "(",
+        /[1-9]/,
+        /\d/,
+        ")",
+        " ",
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+        "-",
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/
+      ];
+    } else {
+      return [
+        "(",
+        /[1-9]/,
+        /\d/,
+        ")",
+        " ",
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/,
+        "-",
+        /\d/,
+        /\d/,
+        /\d/,
+        /\d/
+      ];
+    }
+  };
+
+  return (
+    <MaskedInput
+      {...other}
+      placeholder={placeholder}
+      showMask
+      guide={false}
+      onChange={onChange}
+      name={name}
+      value={value}
+      mask={telephoneMask}
+      ref={ref => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+    />
+  );
+}
+
+TelephoneMaskedInput.propTypes = {
+  inputRef: PropTypes.func,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func
+};
 
 ContactInfo.propTypes = {
   next: PropTypes.func,
