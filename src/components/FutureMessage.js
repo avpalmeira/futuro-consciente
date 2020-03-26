@@ -29,9 +29,9 @@ function FutureMessage(props) {
     },
     {
       field: "_deliveryDate",
-      method: "isEmpty",
-      validWhen: false,
-      message: "A data é obrigatória"
+      method: FormValidator.isValidDate,
+      validWhen: true,
+      message: "Insira uma data válida"
     }
   ]);
 
@@ -102,11 +102,12 @@ function FutureMessage(props) {
                 disableToolbar
                 autoOk={true}
                 disablePast={true}
+                error={false}
+                helperText={false}
                 variant="inline"
                 name="_deliveryDate"
                 format="dd/MM/yyyy"
                 label="Insira a data de envio"
-                style={{ marginLeft: 10 }}
                 value={values._deliveryDate}
                 onChange={handleChange}
                 KeyboardButtonProps={{

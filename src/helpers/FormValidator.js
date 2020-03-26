@@ -13,9 +13,16 @@ class FormValidator {
     this.validations.forEach(rule => {
       // only update validation if it was not marked invalid earlier
       if (!validation[rule.field].isInvalid) {
-        const fieldValue = values[rule.field].toString();
+        const field = values[rule.field];
         const args = rule.args || [];
-        const validationMethod = validator[rule.method];
+        // if value is a Date, dont change it to string
+        const fieldValue = field instanceof Date ? field : field.toString();
+        // the method can be passed as a string which represents a validator method
+        // or as a function which returns true or false
+        const validationMethod =
+          typeof rule.method === "string"
+            ? validator[rule.method]
+            : rule.method;
 
         // if the result of the validator method does not match expectation (validWhen)
         if (validationMethod(fieldValue, ...args, values) !== rule.validWhen) {
@@ -36,6 +43,16 @@ class FormValidator {
       rule => (validation[rule.field] = { isInvalid: false, message: "" })
     );
     return { isValid: true, ...validation };
+  }
+
+  static isValidDate(date, ...args) {
+    const { _isAfterPandemic } = args[0];
+
+    const checkDate =
+      date &&
+      !isNaN(date) &&
+      Object.prototype.toString.call(date) === "[object Date]";
+    return _isAfterPandemic || checkDate;
   }
 }
 
