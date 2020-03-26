@@ -35,9 +35,11 @@ function telephoneMask(rawInput) {
   mask.push(")");
   mask.push(" ");
 
+  // besides area code, a telephone has 8 numbers
   for (let i = 1; i <= 8; i++) {
     mask.push(digit);
 
+    // allow user to include a extra digit
     if (!pushedExtraDigit && stringSize > 14) {
       mask.push(digit);
       pushedExtraDigit = true;
