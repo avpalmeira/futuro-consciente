@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
-import styles from "./styles";
+import styles from "../styles";
 
 function Confirm(props) {
   const { prev } = props;

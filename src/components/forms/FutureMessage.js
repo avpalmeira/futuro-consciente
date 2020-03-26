@@ -14,8 +14,8 @@ import {
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import PropTypes from "prop-types";
-import styles from "./styles";
-import FormValidator from "../helpers/FormValidator";
+import styles from "../styles";
+import FormValidator from "../../helpers/FormValidator";
 
 function FutureMessage(props) {
   const { next, prev, values, handleChange, validation } = props;

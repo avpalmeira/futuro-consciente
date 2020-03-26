@@ -6,9 +6,9 @@ import About from "./About";
 import ContactInfo from "./ContactInfo";
 import FutureMessage from "./FutureMessage";
 import Confirm from "./Confirm";
-import styles from "./styles";
-import logo from "../assets/logo.png";
-import FormValidator from "../helpers/FormValidator";
+import styles from "../styles";
+import logo from "../../assets/logo.png";
+import FormValidator from "../../helpers/FormValidator";
 
 export class FutureForm extends Component {
   constructor(props) {
