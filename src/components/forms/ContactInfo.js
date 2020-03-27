@@ -32,6 +32,13 @@ function ContactInfo(props) {
       method: "isEmpty",
       validWhen: false,
       message: "Telefone é obrigatório"
+    },
+    {
+      field: "_telephone",
+      method: "isLength",
+      validWhen: true,
+      args: [{ min: 14, max: 15 }],
+      message: "Este não é um telefone válido"
     }
   ]);
 
