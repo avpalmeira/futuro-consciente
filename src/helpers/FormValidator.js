@@ -46,6 +46,10 @@ class FormValidator {
   }
 
   static isValidDate(date, ...args) {
+    if (!args || args.length === 0) {
+      return false;
+    }
+
     const { _isAfterPandemic } = args[0];
 
     const checkDate =
@@ -53,6 +57,17 @@ class FormValidator {
       !isNaN(date) &&
       Object.prototype.toString.call(date) === "[object Date]";
     return _isAfterPandemic || checkDate;
+  }
+
+  static hasMinWords(message, ...args) {
+    if (!message || !args || args.length === 0) {
+      return false;
+    }
+
+    const { minWords } = args[0];
+    const words = message.split(" ");
+
+    return words.length >= minWords;
   }
 }
 

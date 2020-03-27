@@ -28,6 +28,13 @@ function FutureMessage(props) {
       message: "A mensagem é obrigatória"
     },
     {
+      field: "_message",
+      method: FormValidator.hasMinWords,
+      validWhen: true,
+      args: [{ minWords: 5 }],
+      message: "A mensagem deve ter, no mínimo 5 palavras"
+    },
+    {
       field: "_deliveryDate",
       method: FormValidator.isValidDate,
       validWhen: true,
@@ -94,7 +101,7 @@ function FutureMessage(props) {
             xs={9}
             style={{ display: "flex", alignItems: "center" }}
           >
-            <Typography>Deseja enviar entao na seguinte data:</Typography>
+            <Typography>Ou deseja enviar na seguinte data:</Typography>
           </Grid>
           <Grid item sm={6} xs={3}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>

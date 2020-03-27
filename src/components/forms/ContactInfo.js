@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Container, TextField } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styles from "../styles";
-import TelephoneMaskedInput from "../inputs/TelephoneMaskedInput";
+import { TelephoneMaskedInput, AlphaMaskedInput } from "../masks";
 import FormValidator from "../../helpers/FormValidator";
 
 function ContactInfo(props) {
@@ -50,7 +50,8 @@ function ContactInfo(props) {
         name="_name"
         margin="normal"
         onChange={e => handleChange(null, e)}
-        defaultValue={values._name}
+        value={values._name}
+        InputProps={{ inputComponent: AlphaMaskedInput }}
       />
 
       {validation._name && validation._name.isInvalid ? (
@@ -65,7 +66,7 @@ function ContactInfo(props) {
         name="_email"
         margin="normal"
         onChange={e => handleChange(null, e)}
-        defaultValue={values._email}
+        value={values._email}
       />
 
       {validation._email && validation._email.isInvalid ? (
