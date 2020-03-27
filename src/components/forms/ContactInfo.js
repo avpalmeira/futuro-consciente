@@ -3,7 +3,7 @@ import { Box, Button, Container, TextField } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styles from "../styles";
 import { TelephoneMaskedInput, AlphaMaskedInput } from "../masks";
-import FormValidator from "../../helpers/FormValidator";
+import FormValidator from "../../utils/FormValidator";
 
 function ContactInfo(props) {
   const { next, prev, values, handleChange, validation } = props;

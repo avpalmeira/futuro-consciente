@@ -10,7 +10,7 @@ import FutureMessage from "./FutureMessage";
 import Confirm from "./Confirm";
 import styles from "../styles";
 import logo from "../../assets/logo.png";
-import FormValidator from "../../helpers/FormValidator";
+import FormValidator from "../../utils/FormValidator";
 
 export class FutureForm extends Component {
   constructor(props) {
