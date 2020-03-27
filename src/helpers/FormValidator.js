@@ -59,6 +59,15 @@ class FormValidator {
     return _isAfterPandemic || checkDate;
   }
 
+  static isFutureDate(date) {
+    if (!date) {
+      return false;
+    }
+
+    const today = new Date();
+    return date > today;
+  }
+
   static hasMinWords(message, ...args) {
     if (!message || !args || args.length === 0) {
       return false;

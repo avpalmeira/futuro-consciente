@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { AppBar, Tabs, Tab, Box } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
+import { addDays } from "date-fns";
+
 import About from "./About";
 import ContactInfo from "./ContactInfo";
 import FutureMessage from "./FutureMessage";
@@ -23,7 +25,7 @@ export class FutureForm extends Component {
       _email: "",
       _telephone: "",
       _message: "",
-      _deliveryDate: new Date(),
+      _deliveryDate: addDays(new Date(), 1),
       _isAfterPandemic: false
     };
 

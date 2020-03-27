@@ -39,6 +39,12 @@ function FutureMessage(props) {
       method: FormValidator.isValidDate,
       validWhen: true,
       message: "Insira uma data válida"
+    },
+    {
+      field: "_deliveryDate",
+      method: FormValidator.isFutureDate,
+      validWhen: true,
+      message: "A data de envio deve ser no futuro"
     }
   ]);
 
