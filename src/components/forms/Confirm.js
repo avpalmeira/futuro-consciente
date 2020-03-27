@@ -4,9 +4,10 @@ import { formatDistance, format } from "date-fns";
 import pt from "date-fns/locale/pt";
 import PropTypes from "prop-types";
 import styles from "../styles";
-
+// import db from '../../utils/DatabaseConfig';
 function Confirm(props) {
   const { prev } = props;
+
   const {
     _name,
     _email,
@@ -15,16 +16,15 @@ function Confirm(props) {
     _isAfterPandemic
   } = props.values;
 
-  let deliveryDate = "Logo após a pandemia do COVID acabar";
+  const deliveryDate = getDeliveryDate(_isAfterPandemic, _deliveryDate);
 
-  if (!_isAfterPandemic) {
-    const dateInDistance = formatDistance(new Date(), _deliveryDate, {
-      locale: pt
-    });
-    const formattedDate = format(_deliveryDate, "dd/MM/yy");
-
-    deliveryDate = `${dateInDistance} (${formattedDate})`;
-  }
+  const handleConfirm = () => {
+    alert("Your form was submitted!");
+    // const formData = props.values;
+    // delete formData.validation
+    // delete formData.step
+    // sendFormData(formData);
+  };
 
   return (
     <Container style={styles.container}>
@@ -69,8 +69,30 @@ function Confirm(props) {
   );
 }
 
-function handleConfirm() {
-  alert("Your form was submitted!");
+/* function sendFormData(formData) {
+  db.collection("futureMessages")
+    .add(formData)
+    .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+} */
+
+function getDeliveryDate(isAfterPandemic, date) {
+  let deliveryDate = "Logo após a pandemia do COVID acabar";
+
+  if (!isAfterPandemic) {
+    const dateInDistance = formatDistance(new Date(), date, {
+      locale: pt
+    });
+    const formattedDate = format(date, "dd/MM/yy");
+
+    deliveryDate = `${dateInDistance} (${formattedDate})`;
+  }
+
+  return deliveryDate;
 }
 
 Confirm.propTypes = {
