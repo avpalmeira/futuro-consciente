@@ -32,7 +32,7 @@ function FutureMessage(props) {
       method: FormValidator.hasMinWords,
       validWhen: true,
       args: [{ minWords: 5 }],
-      message: "A mensagem deve ter, no mínimo 5 palavras"
+      message: "A mensagem deve ter, no mínimo, 5 palavras"
     },
     {
       field: "_deliveryDate",
