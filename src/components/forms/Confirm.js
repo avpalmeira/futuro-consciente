@@ -1,11 +1,30 @@
 import React from "react";
 import { Box, Button, Container, Typography } from "@material-ui/core";
+import { formatDistance, format } from "date-fns";
+import pt from "date-fns/locale/pt";
 import PropTypes from "prop-types";
 import styles from "../styles";
 
 function Confirm(props) {
   const { prev } = props;
-  const { _name, _email, _deliveryDate, _message } = props.values;
+  const {
+    _name,
+    _email,
+    _deliveryDate,
+    _message,
+    _isAfterPandemic
+  } = props.values;
+
+  let deliveryDate = "Logo após a pandemia do COVID acabar";
+
+  if (!_isAfterPandemic) {
+    const dateInDistance = formatDistance(new Date(), _deliveryDate, {
+      locale: pt
+    });
+    const formattedDate = format(_deliveryDate, "dd/MM/yy");
+
+    deliveryDate = `${dateInDistance} (${formattedDate})`;
+  }
 
   return (
     <Container style={styles.container}>
@@ -13,8 +32,9 @@ function Confirm(props) {
         <Typography variant="body1" gutterBottom>
           <span style={styles.b}>{_name}</span>, sua carta será enviada:
         </Typography>
+        <br />
         <Typography variant="body1" gutterBottom>
-          No dia: <span style={styles.b}>{_deliveryDate.toString()}</span>
+          Daqui a: <span style={styles.b}>{deliveryDate}</span>
         </Typography>
         <Typography variant="body1" gutterBottom>
           Para o endereco de e-mail: <span style={styles.b}>{_email}</span>
