@@ -4,7 +4,7 @@ import { formatDistance, format } from "date-fns";
 import pt from "date-fns/locale/pt";
 import PropTypes from "prop-types";
 import styles from "../styles";
-// import db from '../../utils/DatabaseConfig';
+import db from "../../utils/DatabaseConfig";
 function Confirm(props) {
   const { prev } = props;
 
@@ -19,11 +19,11 @@ function Confirm(props) {
   const deliveryDate = getDeliveryDate(_isAfterPandemic, _deliveryDate);
 
   const handleConfirm = () => {
+    const formData = props.values;
+    delete formData.validation;
+    delete formData.step;
+    sendFormData(formData);
     alert("Your form was submitted!");
-    // const formData = props.values;
-    // delete formData.validation
-    // delete formData.step
-    // sendFormData(formData);
   };
 
   return (
@@ -69,16 +69,16 @@ function Confirm(props) {
   );
 }
 
-/* function sendFormData(formData) {
-  db.collection("futureMessages")
+function sendFormData(formData) {
+  db.collection("future-messages")
     .add(formData)
     .then(function(docRef) {
       console.log("Document written with ID: ", docRef.id);
     })
     .catch(function(error) {
-        console.error("Error adding document: ", error);
+      console.error("Error adding document: ", error);
     });
-} */
+}
 
 function getDeliveryDate(isAfterPandemic, date) {
   let deliveryDate = "Logo após a pandemia do COVID acabar";
