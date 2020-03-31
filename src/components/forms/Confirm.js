@@ -74,7 +74,7 @@ function Confirm(props) {
 async function sendFormData(formData) {
   const response = await api.post("saveMessages", formData);
 
-  console.log(response.result);
+  console.log(response.data.result);
 }
 
 function getDeliveryDate(isAfterPandemic, date) {
