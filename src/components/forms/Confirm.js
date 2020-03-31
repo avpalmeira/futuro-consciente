@@ -4,7 +4,7 @@ import { formatDistance, format } from "date-fns";
 import pt from "date-fns/locale/pt";
 import PropTypes from "prop-types";
 import styles from "../styles";
-import db from "../../utils/DatabaseConfig";
+import api from "../../utils/ApiConfig";
 function Confirm(props) {
   const { prev } = props;
 
@@ -22,6 +22,8 @@ function Confirm(props) {
     const formData = props.values;
     delete formData.validation;
     delete formData.step;
+    formData.sent = false;
+    formData._deliveryDate = format(formData._deliveryDate, "yyyy.MM.dd");
     sendFormData(formData);
     alert("Your form was submitted!");
   };
@@ -69,15 +71,10 @@ function Confirm(props) {
   );
 }
 
-function sendFormData(formData) {
-  db.collection("future-messages")
-    .add(formData)
-    .then(function(docRef) {
-      console.log("Document written with ID: ", docRef.id);
-    })
-    .catch(function(error) {
-      console.error("Error adding document: ", error);
-    });
+async function sendFormData(formData) {
+  const response = await api.post("saveMessages", formData);
+
+  console.log(response.result);
 }
 
 function getDeliveryDate(isAfterPandemic, date) {
