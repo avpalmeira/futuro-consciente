@@ -72,7 +72,7 @@ function Confirm(props) {
 }
 
 async function sendFormData(formData) {
-  const response = await api.post("saveMessages", formData);
+  const response = await api.post("save_message", formData);
 
   console.log(response.data.result);
 }
