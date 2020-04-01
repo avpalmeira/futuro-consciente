@@ -23,7 +23,7 @@ function AlphaMaskedInput(props) {
 }
 
 function alphaMask() {
-  const alphaChar = /[a-zA-Z ]/;
+  const alphaChar = /[a-zA-Záãâéêíóõôúç ]/;
   const mask = [];
 
   // it must begin with a alphabetic char
