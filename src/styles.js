@@ -42,6 +42,11 @@ const styles = {
   confirmText: {
     paddingBottom: 30
   },
+  thankYouTitle: {
+    textAlign: "center",
+    fontSize: 24,
+    fontWeight: 700
+  },
   validationError: {
     marginTop: 6,
     marginBottom: 6,
