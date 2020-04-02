@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import { formatDistance, format } from "date-fns";
 import pt from "date-fns/locale/pt";
 import PropTypes from "prop-types";
 import styles from "../../styles";
 import api from "../../utils/ApiConfig";
-function Confirm(props) {
+import Recaptcha from "react-recaptcha";
+
+const Confirm = props => {
+  const [isVerified, setIsVerified] = useState(false);
+
   const { prev, onConfirmation } = props;
 
   const {
@@ -19,16 +23,30 @@ function Confirm(props) {
   const deliveryDate = getDeliveryDate(_isAfterPandemic, _deliveryDate);
 
   const handleConfirm = async () => {
-    const formData = props.values;
-    delete formData.validation;
-    delete formData.step;
-    formData.sent = false;
-    formData._deliveryDate = format(formData._deliveryDate, "yyyy.MM.dd");
-    const result = await sendFormData(formData);
-    alert("Your form was submitted!");
-    if (result) {
-      onConfirmation();
+    if (isVerified) {
+      const formData = props.values;
+      delete formData.validation;
+      delete formData.step;
+      formData.sent = false;
+      formData._deliveryDate = format(formData._deliveryDate, "yyyy.MM.dd");
+      const result = await sendFormData(formData);
+      alert("Your form was submitted!");
+      if (result) {
+        onConfirmation();
+      }
+    } else {
+      alert("Please Verify!");
     }
+  };
+
+  const recaptchaVerifyHandler = response => {
+    if (response) {
+      setIsVerified(true);
+    }
+  };
+
+  const recaptchaOnLoadHandler = () => {
+    console.log("Recaptcha Loaded!");
   };
 
   return (
@@ -52,6 +70,15 @@ function Confirm(props) {
         </Typography>
       </Box>
 
+      <Box style={{ marginBottom: 35 }}>
+        <Recaptcha
+          sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY}
+          render="explicit"
+          verifyCallback={recaptchaVerifyHandler}
+          onloadCallback={recaptchaOnLoadHandler}
+        />
+      </Box>
+
       <Box>
         <Button
           color="primary"
@@ -72,7 +99,7 @@ function Confirm(props) {
       </Box>
     </Container>
   );
-}
+};
 
 async function sendFormData(formData) {
   const response = await api.post("save_message", formData);
