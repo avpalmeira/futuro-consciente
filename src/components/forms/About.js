@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Container, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
-import styles from "../styles";
+import styles from "../../styles";
 import FormValidator from "../../utils/FormValidator";
 
 function About(props) {

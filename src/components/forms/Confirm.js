@@ -3,16 +3,14 @@ import { Box, Button, Container, Typography } from "@material-ui/core";
 import { formatDistance, format } from "date-fns";
 import pt from "date-fns/locale/pt";
 import PropTypes from "prop-types";
-import Recaptcha from "react-recaptcha";
-
-import styles from "../styles";
-
+import styles from "../../styles";
 import api from "../../utils/ApiConfig";
+import Recaptcha from "react-recaptcha";
 
 const Confirm = props => {
   const [isVerified, setIsVerified] = useState(false);
 
-  const { prev } = props;
+  const { prev, onConfirmation } = props;
 
   const {
     _name,
@@ -24,15 +22,18 @@ const Confirm = props => {
 
   const deliveryDate = getDeliveryDate(_isAfterPandemic, _deliveryDate);
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (isVerified) {
       const formData = props.values;
       delete formData.validation;
       delete formData.step;
       formData.sent = false;
       formData._deliveryDate = format(formData._deliveryDate, "yyyy.MM.dd");
-      sendFormData(formData);
+      const result = await sendFormData(formData);
       alert("Your form was submitted!");
+      if (result) {
+        onConfirmation();
+      }
     } else {
       alert("Please Verify!");
     }
@@ -109,6 +110,8 @@ async function sendFormData(formData) {
   const response = await api.post("save_message", formData);
 
   console.log(response.data.result);
+
+  return true;
 }
 
 function getDeliveryDate(isAfterPandemic, date) {
@@ -128,6 +131,7 @@ function getDeliveryDate(isAfterPandemic, date) {
 
 Confirm.propTypes = {
   prev: PropTypes.func,
+  onConfirmation: PropTypes.func,
   values: PropTypes.object
 };
 
