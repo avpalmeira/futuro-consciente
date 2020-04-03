@@ -3,17 +3,10 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import styles from "../../styles";
 
 export default class Facebook extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.linkToShare = "https://developers.facebook.com/docs/";
-    this.appId = "FB_APP_ID";
-  }
-
   initFbApi() {
     window.fbAsyncInit = function() {
       window.FB.init({
-        appId: this.appId,
+        appId: "FB_APP_ID",
         xfbml: true, // parse social plugins on this page
         version: "v6.0"
       });
@@ -42,11 +35,13 @@ export default class Facebook extends React.Component {
   }
 
   handleShareToFacebook() {
+    const link = "https://developers.facebook.com/docs/";
+
     window.FB.ui(
       {
         display: "popup",
         method: "share",
-        href: this.linkToShare
+        href: link
       },
       function(response) {
         console.log(response);
