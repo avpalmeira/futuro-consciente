@@ -38,6 +38,10 @@ const Confirm = props => {
     }
   };
 
+  const recaptchaExpireHandler = () => {
+    setIsVerified(false);
+  };
+
   const recaptchaVerifyHandler = response => {
     if (response) {
       setIsVerified(true);
@@ -73,8 +77,9 @@ const Confirm = props => {
         <Recaptcha
           sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY}
           render="explicit"
-          verifyCallback={recaptchaVerifyHandler}
           onloadCallback={recaptchaOnLoadHandler}
+          verifyCallback={recaptchaVerifyHandler}
+          expiredCallback={recaptchaExpireHandler}
         />
       </Box>
 
