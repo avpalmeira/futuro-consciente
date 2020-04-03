@@ -1,11 +1,10 @@
 import React, { useState } from "react";
+import Recaptcha from "react-recaptcha";
 import { Box, Button, Container, Typography } from "@material-ui/core";
-import { formatDistance, format } from "date-fns";
-import pt from "date-fns/locale/pt";
 import PropTypes from "prop-types";
 import styles from "../../styles";
 import api from "../../utils/ApiConfig";
-import Recaptcha from "react-recaptcha";
+import { getDeliveryDate, dateDbFormat } from "../../utils/DateHelper";
 
 const Confirm = props => {
   const [isVerified, setIsVerified] = useState(false);
@@ -28,7 +27,7 @@ const Confirm = props => {
       delete formData.validation;
       delete formData.step;
       formData.sent = false;
-      formData._deliveryDate = format(formData._deliveryDate, "yyyy.MM.dd");
+      formData._deliveryDate = dateDbFormat(formData._deliveryDate);
       const result = await sendFormData(formData);
       alert("Your form was submitted!");
       if (result) {
@@ -107,21 +106,6 @@ async function sendFormData(formData) {
   console.log(response.data.result);
 
   return true;
-}
-
-function getDeliveryDate(isAfterPandemic, date) {
-  let deliveryDate = "Logo após a pandemia do COVID acabar";
-
-  if (!isAfterPandemic) {
-    const dateInDistance = formatDistance(new Date(), date, {
-      locale: pt
-    });
-    const formattedDate = format(date, "dd/MM/yy");
-
-    deliveryDate = `${dateInDistance} (${formattedDate})`;
-  }
-
-  return deliveryDate;
 }
 
 Confirm.propTypes = {

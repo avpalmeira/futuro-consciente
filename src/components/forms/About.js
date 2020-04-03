@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styles from "../../styles";
 import FormValidator from "../../utils/FormValidator";
 
-function About(props) {
+const About = props => {
   const { next } = props;
 
   const validator = new FormValidator([]);
@@ -28,7 +28,7 @@ function About(props) {
       </Button>
     </Container>
   );
-}
+};
 
 About.propTypes = {
   next: PropTypes.func

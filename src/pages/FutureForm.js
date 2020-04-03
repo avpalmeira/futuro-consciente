@@ -7,9 +7,9 @@ import {
   About,
   Confirm,
   ContactInfo,
-  FutureMessage,
-  ThankYou
+  FutureMessage
 } from "../components/forms";
+import ThankYou from "./ThankYou";
 import FormValidator from "../utils/FormValidator";
 import styles from "../styles";
 
@@ -19,11 +19,11 @@ export class FutureForm extends Component {
 
     this.state = {
       step: 1,
-      wasformSent: false,
+      wasFormSent: true,
       validation: new FormValidator([]).valid(),
 
       // form fields
-      _name: "",
+      _name: "Alberto",
       _email: "",
       _telephone: "",
       _message: "",
@@ -83,7 +83,7 @@ export class FutureForm extends Component {
 
   render() {
     const { step, wasFormSent, ...values } = this.state;
-    let currentTab = <ThankYou />;
+    let currentTab = <ThankYou values={values} />;
 
     if (!wasFormSent) {
       switch (step) {

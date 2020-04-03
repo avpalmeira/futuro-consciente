@@ -47,6 +47,30 @@ const styles = {
     fontSize: 24,
     fontWeight: 700
   },
+  thankYouInfo: {
+    textAlign: "center",
+    padding: 40,
+    paddingLeft: "20%",
+    paddingRight: "20%"
+  },
+  shareInfo: {
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: 700,
+    paddingLeft: "10%",
+    paddingRight: "10%",
+    marginBottom: 20
+  },
+  socialIcons: {
+    display: "flex",
+    maxWidth: 300,
+    marginLeft: "auto",
+    marginRight: "auto",
+    justifyContent: "space-between"
+  },
+  socialIcon: {
+    fontSize: "2rem"
+  },
   validationError: {
     marginTop: 6,
     marginBottom: 6,
