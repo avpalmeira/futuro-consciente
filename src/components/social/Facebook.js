@@ -52,7 +52,7 @@ export default class Facebook extends React.Component {
   render() {
     return (
       <div
-        style={{ cursor: "pointer", color: "purple" }}
+        style={{ cursor: "pointer", color: "#2A5297" }}
         onClick={this.handleShareToFacebook}
       >
         <FacebookIcon style={styles.socialIcon} />

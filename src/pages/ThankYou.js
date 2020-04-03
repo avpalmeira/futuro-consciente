@@ -17,7 +17,7 @@ const ThankYou = props => {
 
       <Box style={styles.thankYouInfo}>
         <Typography variant="body1" gutterBottom>
-          Sua mensagem foi agendada para o dia:
+          Sua mensagem foi agendada para daqui a:
           <br />
           {deliveryDate}
         </Typography>
