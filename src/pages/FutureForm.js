@@ -19,11 +19,11 @@ export class FutureForm extends Component {
 
     this.state = {
       step: 1,
-      wasFormSent: true,
+      wasFormSent: false,
       validation: new FormValidator([]).valid(),
 
       // form fields
-      _name: "Roberto",
+      _name: "",
       _email: "",
       _telephone: "",
       _message: "",

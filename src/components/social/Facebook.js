@@ -6,7 +6,7 @@ export default class Facebook extends React.Component {
   initFbApi() {
     window.fbAsyncInit = function() {
       window.FB.init({
-        appId: "FB_APP_ID",
+        appId: process.env.REACT_APP_FB_APP_ID,
         xfbml: true, // parse social plugins on this page
         version: "v6.0"
       });
@@ -31,11 +31,12 @@ export default class Facebook extends React.Component {
   }
 
   componentDidMount() {
+    console.log("app id:" + process.env.REACT_APP_FB_APP_ID);
     this.initFbApi();
   }
 
   handleShareToFacebook() {
-    const link = "https://developers.facebook.com/docs/";
+    const link = process.env.REACT_APP_SITE_LINK;
 
     window.FB.ui(
       {

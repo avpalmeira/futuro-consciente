@@ -27,11 +27,25 @@ export default class Twitter extends React.Component {
     this.loadTwitterSdk();
   }
 
+  constructLink(shareLink, message, linkToShare) {
+    let link = shareLink.concat("?");
+
+    if (message) {
+      const textParam = `text=${message}&`;
+      link = link.concat(textParam);
+    }
+    const urlParam = `url=${linkToShare}`;
+    link = link.concat(urlParam);
+
+    const encodedLink = encodeURI(link);
+
+    return encodedLink;
+  }
+
   render() {
-    const linkToShare = "https://developers.facebook.com/docs/";
-    const message = "Hey you!";
-    const urlEncodedMessage = encodeURI(message);
-    const link = `https://twitter.com/intent/tweet?text=${urlEncodedMessage}&url=${linkToShare}`;
+    const shareLink = "https://twitter.com/intent/tweet";
+    const linkToShare = process.env.REACT_APP_SITE_LINK;
+    const link = this.constructLink(shareLink, null, linkToShare);
     return (
       <div>
         <a href={link} style={{ color: "#00AAEC" }}>
