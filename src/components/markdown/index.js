@@ -8,7 +8,7 @@ export default class Markdown extends Component {
 
     this.state = { text: "" };
 
-    fetchMarkdownContent();
+    this.fetchMarkdownContent();
   }
 
   fetchMarkdownContent() {
@@ -25,11 +25,7 @@ export default class Markdown extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <ReactMarkdown source={this.state.text} />
-      </div>
-    );
+    return <ReactMarkdown source={this.state.text} />;
   }
 }
 

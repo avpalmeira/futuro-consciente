@@ -3,7 +3,7 @@ import { useTheme, ThemeProvider } from "@material-ui/core/styles";
 import { AppBar } from "@material-ui/core";
 import styles from "./styles";
 import logo from "./content/logo.png";
-import FutureForm from "./pages/FutureForm";
+import Router from "./Router";
 
 const App = () => {
   const theme = useTheme();
@@ -14,7 +14,7 @@ const App = () => {
         <img alt="" src={logo} style={styles.logo} />
       </AppBar>
 
-      <FutureForm />
+      <Router />
     </ThemeProvider>
   );
 };
