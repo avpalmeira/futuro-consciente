@@ -31,7 +31,6 @@ export default class Facebook extends React.Component {
   }
 
   componentDidMount() {
-    console.log("app id:" + process.env.REACT_APP_FB_APP_ID);
     this.initFbApi();
   }
 

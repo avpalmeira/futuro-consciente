@@ -24,12 +24,17 @@ const Confirm = props => {
   const handleConfirm = async () => {
     if (isVerified) {
       const formData = props.values;
+
       delete formData.validation;
       delete formData.step;
+      delete formData.wasFormSent;
+
       formData.sent = false;
       formData._deliveryDate = dateDbFormat(formData._deliveryDate);
+
       const result = await sendFormData(formData);
       alert("Your form was submitted!");
+
       if (result) {
         onConfirmation();
       }
