@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme, ThemeProvider } from "@material-ui/core/styles";
 import { AppBar } from "@material-ui/core";
 import styles from "./styles";
-import logo from "./assets/logo.png";
+import logo from "./content/logo.png";
 import FutureForm from "./pages/FutureForm";
 
 const App = () => {
