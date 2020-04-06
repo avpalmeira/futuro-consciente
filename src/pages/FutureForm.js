@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Tabs, Tab, Box } from "@material-ui/core";
-import PropTypes from "prop-types";
 import { addDays } from "date-fns";
 
 import {
@@ -144,9 +143,5 @@ export class FutureForm extends Component {
     );
   }
 }
-
-FutureForm.propTypes = {
-  theme: PropTypes.object
-};
 
 export default FutureForm;
