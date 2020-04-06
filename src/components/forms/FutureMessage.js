@@ -13,12 +13,16 @@ import {
   MuiPickersUtilsProvider
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import { addWeeks, addYears } from "date-fns";
 import PropTypes from "prop-types";
 import styles from "../../styles";
 import FormValidator from "../../utils/FormValidator";
 
 function FutureMessage(props) {
   const { next, prev, values, handleChange, validation } = props;
+
+  const minDeliveryDate = addWeeks(new Date(), 1);
+  const maxDeliveryDate = addYears(new Date(), 2);
 
   const validator = new FormValidator([
     {
@@ -43,8 +47,26 @@ function FutureMessage(props) {
     {
       field: "_deliveryDate",
       method: FormValidator.isFutureDate,
+      args: [
+        {
+          minDeliveryDate,
+          ignoreValidation: values._isAfterPandemic
+        }
+      ],
       validWhen: true,
-      message: "A data de envio deve ser no futuro"
+      message: "A data de envio deve ser, no mínimo, daqui a 1 semana"
+    },
+    {
+      field: "_deliveryDate",
+      method: FormValidator.isFutureDate,
+      args: [
+        {
+          maxDeliveryDate,
+          ignoreValidation: values._isAfterPandemic
+        }
+      ],
+      validWhen: true,
+      message: "A data de envio deve ser, no máximo, até daqui a 2 anos"
     }
   ]);
 
@@ -115,6 +137,7 @@ function FutureMessage(props) {
                 disableToolbar
                 autoOk={true}
                 disablePast={true}
+                minDate={minDeliveryDate}
                 error={false}
                 helperText={false}
                 variant="inline"

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Tabs, Tab, Box } from "@material-ui/core";
-import { addDays } from "date-fns";
+import { addWeeks } from "date-fns";
 
 import {
   About,
@@ -26,7 +26,7 @@ export class FutureForm extends Component {
       _email: "",
       _telephone: "",
       _message: "",
-      _deliveryDate: addDays(new Date(), 1),
+      _deliveryDate: addWeeks(new Date(), 1),
       _isAfterPandemic: false
     };
 
