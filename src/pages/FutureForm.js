@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Tabs, Tab, Box } from "@material-ui/core";
 import { addWeeks } from "date-fns";
 import {
   About,
@@ -7,9 +6,9 @@ import {
   ContactInfo,
   FutureMessage
 } from "../components/forms";
+import { Navigation } from "../components/page-sections";
 import ThankYou from "./ThankYou";
 import validators from "../validators";
-import styles from "../styles";
 
 export class FutureForm extends Component {
   constructor(props) {
@@ -150,24 +149,15 @@ export class FutureForm extends Component {
       }
     }
     return (
-      <Box>
-        {!wasFormSent && (
-          <Box style={styles.tabsWrapper}>
-            <Tabs
-              value={step}
-              onChange={this.handleNavigationChange}
-              aria-label="form steps tabs"
-            >
-              <Tab value={1} label="Sobre" />
-              <Tab value={2} label="Contato" />
-              <Tab value={3} label="Mensagem" />
-              <Tab value={4} label="Confirmacao" />
-            </Tabs>
-          </Box>
-        )}
+      <div>
+        <Navigation
+          tab={step}
+          shouldRender={wasFormSent}
+          onNavigationChange={this.handleNavigationChange}
+        />
 
         {currentTab}
-      </Box>
+      </div>
     );
   }
 }
