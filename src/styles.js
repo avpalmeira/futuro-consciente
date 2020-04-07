@@ -85,7 +85,7 @@ const styles = {
     height: "100%",
     marginLeft: "auto",
     marginRight: "auto",
-    padding: 30
+    padding: 10
   },
   footerLink: {
     color: "black",
@@ -97,7 +97,6 @@ const styles = {
     bottom: 0,
     right: 0,
     left: 0,
-    marginTop: 40,
     backgroundColor: "#fff",
     borderTop: "1px solid gray"
   }
