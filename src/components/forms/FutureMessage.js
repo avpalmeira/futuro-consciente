@@ -13,62 +13,15 @@ import {
   MuiPickersUtilsProvider
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import { addWeeks, addYears } from "date-fns";
+import { addWeeks } from "date-fns";
 import PropTypes from "prop-types";
 import styles from "../../styles";
-import FormValidator from "../../utils/FormValidator";
 
 function FutureMessage(props) {
-  const { next, prev, values, handleChange, validation } = props;
-
+  const { next, prev, values, handleChange } = props;
+  const { validation, _message, _isAfterPandemic, _deliveryDate } = values;
+  // beware: this is a duplicate. this variable is also set in validators
   const minDeliveryDate = addWeeks(new Date(), 1);
-  const maxDeliveryDate = addYears(new Date(), 2);
-
-  const validator = new FormValidator([
-    {
-      field: "_message",
-      method: "isEmpty",
-      validWhen: false,
-      message: "A mensagem é obrigatória"
-    },
-    {
-      field: "_message",
-      method: FormValidator.hasMinWords,
-      validWhen: true,
-      args: [{ minWords: 5 }],
-      message: "A mensagem deve ter, no mínimo, 5 palavras"
-    },
-    {
-      field: "_deliveryDate",
-      method: FormValidator.isValidDate,
-      validWhen: true,
-      message: "Insira uma data válida"
-    },
-    {
-      field: "_deliveryDate",
-      method: FormValidator.isFutureDate,
-      args: [
-        {
-          minDeliveryDate,
-          ignoreValidation: values._isAfterPandemic
-        }
-      ],
-      validWhen: true,
-      message: "A data de envio deve ser, no mínimo, daqui a 1 semana"
-    },
-    {
-      field: "_deliveryDate",
-      method: FormValidator.isFutureDate,
-      args: [
-        {
-          maxDeliveryDate,
-          ignoreValidation: values._isAfterPandemic
-        }
-      ],
-      validWhen: true,
-      message: "A data de envio deve ser, no máximo, até daqui a 2 anos"
-    }
-  ]);
 
   return (
     <Container style={styles.container}>
@@ -80,7 +33,7 @@ function FutureMessage(props) {
         multiline
         rows="3"
         variant="outlined"
-        defaultValue={values._message}
+        defaultValue={_message}
       />
 
       {validation._message && validation._message.isInvalid ? (
@@ -107,21 +60,21 @@ function FutureMessage(props) {
           style={{ display: "flex", alignItems: "center" }}
         >
           <Switch
-            checked={values._isAfterPandemic}
+            checked={_isAfterPandemic}
             color="primary"
             name="_isAfterPandemic"
             onChange={e => handleChange(null, e)}
             inputProps={{ "aria-label": "check option to send after pandemic" }}
           />
           <Typography style={{ marginLeft: 10 }}>
-            {values._isAfterPandemic ? "Sim" : null}
+            {_isAfterPandemic ? "Sim" : null}
           </Typography>
         </Grid>
       </Grid>
 
       <br />
 
-      {!values._isAfterPandemic ? (
+      {!_isAfterPandemic ? (
         <Grid container spacing={2} style={{ marginBottom: 20 }}>
           <Grid
             item
@@ -144,7 +97,7 @@ function FutureMessage(props) {
                 name="_deliveryDate"
                 format="dd/MM/yyyy"
                 label="Insira a data de envio"
-                value={values._deliveryDate}
+                value={_deliveryDate}
                 onChange={handleChange}
                 KeyboardButtonProps={{
                   "aria-label": "change date"
@@ -172,11 +125,7 @@ function FutureMessage(props) {
           Anterior
         </Button>
 
-        <Button
-          color="primary"
-          variant="contained"
-          onClick={e => next(validator, e)}
-        >
+        <Button color="primary" variant="contained" onClick={next}>
           Próximo
         </Button>
       </Box>
@@ -188,8 +137,7 @@ FutureMessage.propTypes = {
   next: PropTypes.func,
   prev: PropTypes.func,
   handleChange: PropTypes.func,
-  values: PropTypes.object,
-  validation: PropTypes.object
+  values: PropTypes.object
 };
 
 export default FutureMessage;

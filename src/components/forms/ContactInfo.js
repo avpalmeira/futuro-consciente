@@ -3,44 +3,10 @@ import { Box, Button, Container, TextField } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styles from "../../styles";
 import { TelephoneMaskedInput, AlphaMaskedInput } from "../masks";
-import FormValidator from "../../utils/FormValidator";
 
 function ContactInfo(props) {
-  const { next, prev, values, handleChange, validation } = props;
-
-  const validator = new FormValidator([
-    {
-      field: "_name",
-      method: "isEmpty",
-      validWhen: false,
-      message: "Nome é obrigatório"
-    },
-    {
-      field: "_email",
-      method: "isEmpty",
-      validWhen: false,
-      message: "Email é obrigatório"
-    },
-    {
-      field: "_email",
-      method: "isEmail",
-      validWhen: true,
-      message: "Este não é um email válido"
-    },
-    {
-      field: "_telephone",
-      method: "isEmpty",
-      validWhen: false,
-      message: "Telefone é obrigatório"
-    },
-    {
-      field: "_telephone",
-      method: "isLength",
-      validWhen: true,
-      args: [{ min: 14, max: 15 }],
-      message: "Este não é um telefone válido"
-    }
-  ]);
+  const { next, prev, values, handleChange } = props;
+  const { validation, _name, _email, _telephone } = values;
 
   return (
     <Container style={styles.container}>
@@ -50,7 +16,7 @@ function ContactInfo(props) {
         name="_name"
         margin="normal"
         onChange={e => handleChange(null, e)}
-        value={values._name}
+        value={_name}
         InputProps={{ inputComponent: AlphaMaskedInput }}
       />
 
@@ -66,7 +32,7 @@ function ContactInfo(props) {
         name="_email"
         margin="normal"
         onChange={e => handleChange(null, e)}
-        value={values._email}
+        value={_email}
       />
 
       {validation._email && validation._email.isInvalid ? (
@@ -80,7 +46,7 @@ function ContactInfo(props) {
         placeholder="Digite seu telefone"
         name="_telephone"
         margin="normal"
-        value={values._telephone}
+        value={_telephone}
         onChange={e => handleChange(null, e)}
         InputProps={{ inputComponent: TelephoneMaskedInput }}
       />
@@ -101,11 +67,7 @@ function ContactInfo(props) {
           Anterior
         </Button>
 
-        <Button
-          color="primary"
-          variant="contained"
-          onClick={e => next(validator, e)}
-        >
+        <Button color="primary" variant="contained" onClick={next}>
           Próximo
         </Button>
       </Box>
@@ -117,8 +79,7 @@ ContactInfo.propTypes = {
   next: PropTypes.func,
   prev: PropTypes.func,
   handleChange: PropTypes.func,
-  values: PropTypes.object,
-  validation: PropTypes.object
+  values: PropTypes.object
 };
 
 export default ContactInfo;

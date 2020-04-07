@@ -6,7 +6,7 @@ import styles from "../../styles";
 import api from "../../utils/ApiConfig";
 import { getDeliveryDate, dateDbFormat } from "../../utils/DateHelper";
 
-const Confirm = props => {
+function Confirm(props) {
   const [isVerified, setIsVerified] = useState(false);
 
   const { prev, onConfirmation } = props;
@@ -108,7 +108,7 @@ const Confirm = props => {
       </Box>
     </Container>
   );
-};
+}
 
 async function sendFormData(formData) {
   const response = await api.post("save_message", formData);
