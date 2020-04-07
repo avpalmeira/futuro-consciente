@@ -76,6 +76,30 @@ const styles = {
     marginBottom: 6,
     fontSize: 12,
     color: "#f50057"
+  },
+  footerLinks: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    maxWidth: 700,
+    height: "100%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    padding: 30
+  },
+  footerLink: {
+    color: "black",
+    opacity: 0.7,
+    textDecoration: "none"
+  },
+  footer: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    left: 0,
+    marginTop: 40,
+    backgroundColor: "#fff",
+    borderTop: "1px solid gray"
   }
 };
 
