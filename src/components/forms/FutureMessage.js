@@ -113,9 +113,7 @@ function FutureMessage(props) {
         </Grid>
       ) : null}
 
-      <br />
-
-      <Box>
+      <Box style={styles.buttons}>
         <Button
           color="primary"
           variant="contained"

@@ -5,7 +5,7 @@ import styles from "../../styles";
 export default function Footer() {
   return (
     <footer style={styles.footer}>
-      <div style={styles.footerLinks}>
+      <nav style={styles.footerLinks}>
         <Link style={styles.footerLink} to="/">
           Home
         </Link>
@@ -15,7 +15,7 @@ export default function Footer() {
         <Link style={styles.footerLink} to="/privacidade">
           Políticas de Privacidade
         </Link>
-      </div>
+      </nav>
     </footer>
   );
 }

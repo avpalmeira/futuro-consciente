@@ -55,9 +55,7 @@ function ContactInfo(props) {
         <p style={styles.validationError}>{validation._telephone.message}</p>
       ) : null}
 
-      <br />
-
-      <Box>
+      <Box style={styles.buttons}>
         <Button
           color="primary"
           variant="contained"

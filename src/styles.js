@@ -2,7 +2,6 @@ const styles = {
   pageContent: {
     position: "relative",
     paddingBottom: 50,
-    boxSizing: "border-box",
     minHeight: "100vh"
   },
   container: {
@@ -19,15 +18,17 @@ const styles = {
     marginBottom: 20,
     textAlign: "center"
   },
-  button: {
-    maxWidth: 105,
+  buttons: {
+    marginTop: 40,
     alignSelf: "center"
+  },
+  button: {
+    maxWidth: 105
   },
   buttonConfirm: {
     backgroundColor: "#4caf50"
   },
   logo: {
-    maxWidth: 200,
     height: "100%",
     padding: 20,
     marginRight: "auto",

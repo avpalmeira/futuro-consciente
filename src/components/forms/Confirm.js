@@ -78,7 +78,7 @@ function Confirm(props) {
         </Typography>
       </Box>
 
-      <Box style={{ marginBottom: 35 }}>
+      <Box>
         <Recaptcha
           sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY}
           render="explicit"
@@ -88,7 +88,7 @@ function Confirm(props) {
         />
       </Box>
 
-      <Box>
+      <Box style={styles.buttons}>
         <Button
           color="primary"
           variant="contained"

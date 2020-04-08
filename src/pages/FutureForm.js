@@ -149,7 +149,7 @@ export class FutureForm extends Component {
       }
     }
     return (
-      <div>
+      <main>
         <Navigation
           tab={step}
           shouldRender={wasFormSent}
@@ -157,7 +157,7 @@ export class FutureForm extends Component {
         />
 
         {currentTab}
-      </div>
+      </main>
     );
   }
 }

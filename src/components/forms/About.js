@@ -12,14 +12,16 @@ const About = props => {
     <Container style={styles.container}>
       <Markdown source={AboutMd} />
 
-      <Button
-        color="primary"
-        variant="contained"
-        style={styles.button}
-        onClick={next}
-      >
-        Próximo
-      </Button>
+      <div style={styles.buttons}>
+        <Button
+          color="primary"
+          variant="contained"
+          style={styles.button}
+          onClick={next}
+        >
+          Próximo
+        </Button>
+      </div>
     </Container>
   );
 };
