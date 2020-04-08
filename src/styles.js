@@ -1,4 +1,10 @@
 const styles = {
+  pageContent: {
+    position: "relative",
+    paddingBottom: 50,
+    boxSizing: "border-box",
+    minHeight: "100vh"
+  },
   container: {
     display: "flex",
     flexDirection: "column",
@@ -6,7 +12,6 @@ const styles = {
     maxWidth: 700,
     paddingRight: 50,
     paddingLeft: 50,
-    paddingBottom: 30,
     paddingTop: 30
   },
   title: {
@@ -95,8 +100,7 @@ const styles = {
   footer: {
     position: "absolute",
     bottom: 0,
-    right: 0,
-    left: 0,
+    width: "100%",
     backgroundColor: "#fff",
     borderTop: "1px solid gray"
   }
