@@ -6,7 +6,13 @@ import logo from "../../content/logo.png";
 export default function Header() {
   return (
     <AppBar style={styles.appBar} position="static">
-      <img alt="" src={logo} style={styles.logo} />
+      <div style={styles.logo}>
+        <img alt="" src={logo} />
+        <div style={styles.logoText}>
+          <span style={styles.logoTextSm}>Futuro</span>
+          <span style={styles.logoTextLg}>Consciente</span>
+        </div>
+      </div>
     </AppBar>
   );
 }

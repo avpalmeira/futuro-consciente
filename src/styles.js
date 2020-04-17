@@ -32,7 +32,24 @@ const styles = {
     height: "100%",
     padding: 20,
     marginRight: "auto",
-    marginLeft: "auto"
+    marginLeft: "auto",
+    display: "flex"
+  },
+  logoText: {
+    display: "flex",
+    flexDirection: "column",
+    color: "#4E4D4C",
+    paddingBottom: 4,
+    marginLeft: 6,
+    justifyContent: "flex-end",
+    lineHeight: "1.4rem"
+  },
+  logoTextSm: {
+    fontSize: 24
+  },
+  logoTextLg: {
+    fontSize: 32,
+    fontWeight: "bold"
   },
   appBar: {
     backgroundColor: "white"
